@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+cargo +nightly build --target wasm32-unknown-unknown
+
+wasm-bindgen target/wasm32-unknown-unknown/debug/js_hello_world.wasm \
+  --typescript \
+  --out-dir app
+
+npm install
+npm run build
+
+cp index.html dist
